@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Custom Browser</title>
+    <style>
+        /* Overall Body Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #4CAF50; /* Green Background */
+            color: white; /* White Text */
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        /* URL Bar Styling */
+        #url-bar {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            background-color: #333; /* Dark background for the URL bar */
+            color: white;
+        }
+
+        /* Buttons Styling */
+        .button-container {
+            display: flex;
+            justify-content: flex-start;
+            background-color: #333;
+            padding: 10px;
+        }
+
+        .button-container button {
+            background-color: #4CAF50; /* Green buttons */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            margin-right: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .button-container button:hover {
+            background-color: #45a049; /* Lighter Green on hover */
+        }
+
+        /* Iframe Styling */
+        iframe {
+            flex: 1;
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Responsive Styling for Desktop Mode */
+        @media (max-width: 768px) {
+            /* Ensure it stays in desktop mode */
+            body {
+                overflow: hidden;
+                height: 100%;
+            }
+
+            iframe {
+                width: 100%;
+                height: calc(100vh - 60px); /* Adjust iframe height */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- URL Bar -->
+    <input id="url-bar" type="text" placeholder="URL" readonly />
+
+    <!-- Navigation Buttons -->
+    <div class="button-container">
+        <button onclick="window.history.back()">Back</button>
+        <button onclick="window.location.reload()">Reload</button>
+    </div>
+
+    <!-- Iframe for content -->
+    <iframe id="iframe" src="https://web.whatsapp.com/#"></iframe>
+
+    <script>
+        // Default URL for the browser (whatsapp web)
+        let defaultURL = "https://web.whatsapp.com/#";
+
+        // Setting the default URL in the URL bar (readonly)
+        document.getElementById('url-bar').value = defaultURL;
+
+        // Prevent user from changing the URL (readonly)
+        document.getElementById('url-bar').addEventListener('click', function() {
+            return false; // Disables user input
+        });
+
+        // Force desktop mode for mobile/tablet
+        window.onload = function() {
+            document.getElementById('iframe').src = defaultURL;
+        };
+    </script>
+
+</body>
+</html>
